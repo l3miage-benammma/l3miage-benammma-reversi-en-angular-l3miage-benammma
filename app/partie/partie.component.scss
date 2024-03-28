@@ -1,0 +1,30 @@
+$W: 25px;
+$divW: calc(0.8 * $W );
+$colorP1: #333;
+$colorP2: #ccc;
+
+section.info {
+    display: flex;
+    flex-flow: row;
+    margin-top: .5em;
+
+    .token {
+        margin-left: .25em;
+        margin-right: .25em;
+    }
+}
+
+div.token {
+    width: $divW;
+    height: $divW;
+    border-radius: 50%;
+    border: solid black 1px;
+
+    &.Player1 {
+        background-color: $colorP1;
+    }
+
+    &.Player2 {
+        background-color: $colorP2;
+    }
+}

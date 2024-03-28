@@ -1,0 +1,48 @@
+
+<app-plateau 
+    [gameState]="gameStateAll()" 
+    [canPlay]="canPlay()" 
+    (played)="play($event)">
+</app-plateau>
+
+<section class="info">
+    Au tour de <div class="token" 
+                    [class.Player1]="gameStateAll().gameState.turn == 'Player1'"
+                    [class.Player2]="gameStateAll().gameState.turn == 'Player2'"></div>
+</section>
+
+
+<app-player-score 
+    [gameState]="gameStateAll()" 
+    player="Player1" 
+    (activateAI)="changeBotPlayerStatus('Player1', $event)">
+</app-player-score>
+
+
+<app-player-score 
+    [gameState]="gameStateAll()" 
+    player="Player2" 
+    (activateAI)="changeBotPlayerStatus('Player2', $event)">
+</app-player-score>
+
+
+<hr/>
+
+<section class="info">
+    <div *ngIf="gameStateAll().winner != undefined">
+        <div *ngIf="gameStateAll().winner == 'Drawn'" style="margin-top: 5px;">
+            Match nul
+        </div>
+        
+        <div *ngIf="gameStateAll().winner != 'Drawn'" style="margin-top: 5px;">
+            Le vainqueur est &nbsp; <div class="token" 
+                                    [class.Player1]="gameStateAll().winner == 'Player1'"
+                                    [class.Player2]="gameStateAll().winner == 'Player2'"></div>
+        </div>
+    </div>
+</section>
+
+
+<button (click)="reset()" style="margin-top: 10px;">
+    Recommencer
+</button>
